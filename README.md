@@ -110,7 +110,7 @@ The backend for a system for Food Delivery like UberEats, Doordash and Postmate.
 
 ### Built With
 
-* Django 
+* Vuejs 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -129,7 +129,10 @@ To get a local copy up and running follow these simple example steps.
     $virtualenv 
   ``` -->
 
-* Having python
+* Having nodejs
+* Having npm 
+* Having vue-cli
+* Running the backend 
 
 ### Installation
 
@@ -137,21 +140,15 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/0script/tiktakfood-ux.git
    ```
-2. Create and activate virtual environment
+2. Install the package
    ```shell
    $cd tiktakfood-ux/
-   $virtualenv .
-   $source bin/activate
+   $npm install
    ```
-3. Install requirements
+3. Run the application
    ```shell
-    $pip install -r requirements.txt
+    $npm run serve
    ```
-4. Start server
-```shell
-    $cd tiktakfood-ux/
-    $python3 manage.py runserver
-```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 

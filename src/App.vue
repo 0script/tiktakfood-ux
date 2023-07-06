@@ -1,178 +1,103 @@
 <template>
   <div id="app">
+    <nav
+      id="navbar-sticky"
+      class="navbar is-fixed-top has-shadow is-transparent"
+      :class="{'sticky':stickyNavbar}"
+      role="navigation"
+      aria-label="main navigation"
+    >
 
-    <header>
-          
-      <nav 
-        id="navbar-sticky" 
-        class="navbar is-fixed-top has-shadow is-transparent" 
-        :class="{'sticky':stickyNavbar}" 
-        role="navigation" 
-        aria-label="main navigation"
-      >
+      <div class="navbar-start">
+        <font-awesome-icon 
+          :icon="['fas', 'bars']" 
+          class=" button navbar-item side-menu-btn"
+          @click="sideMenu = true"
+        />
+      </div>
 
-        
-        <div class="navbar-start">
-          <font-awesome-icon 
-            :icon="['fas', 'bars']" 
-            class=" button navbar-item side-menu-btn"
-            @click="sideMenu = true"
-          />
-        </div>
-
-        <div class="navbar-brand">
+      <div class="navbar-brand">
                 
-            <router-link to="/" class="navbar-item">
-              <strong>TikTakFood</strong>
-            </router-link>
+        <router-link to="/" class="navbar-item">
+          <strong>TikTakFood</strong>
+        </router-link>
       
-          <a 
-            role="button" 
-            class="navbar-burger" 
-            aria-label="menu" 
-            aria-expanded="false" 
-            data-target="navbar-menu"
-            :class="{'is-active':showMobileMenu}"
-            @click="showMobileMenu = !showMobileMenu"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
+        <a 
+          role="button" 
+          class="navbar-burger" 
+          aria-label="menu" 
+          aria-expanded="false" 
+          data-target="navbar-menu"
+          :class="{'is-active':showMobileMenu}"
+          @click="showMobileMenu = !showMobileMenu"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
 
-        </div>
+      </div>
 
-        <div :class="{'is-active':showMobileMenu}" id="navbar-menu" class="navbar-menu">
+      <div :class="{'is-active':showMobileMenu}" id="navbar-menu" class="navbar-menu">
           
-          <div class="navbar-end">
+        <div class="navbar-end">
+          
+          <div class="navbar-item">
             
-            <div class="navbar-item">
-              
-              <div class="buttons">
-                
-                <router-link to="log-in/" class="button is-warning">
-                  <span>
-                    <font-awesome-icon :icon="['fas', 'right-to-bracket']" />
-                    <!-- <font-awesome-icon icon="fa-solid fa-cart-shopping" /> -->
-                  </span>
-                  <span>  Log in</span>
-                </router-link>
-                <router-link to="sign-up/" class="button is-light">
-                  Sign In
-                </router-link>  
-              </div>
+            <div class="buttons">
+              <router-link to="/log-in" class="button is-warning">
+                <span>
+                  <font-awesome-icon :icon="['fas', 'right-to-bracket']" />
+                  <!-- <font-awesome-icon icon="fa-solid fa-cart-shopping" /> -->
+                </span>
+                <span>  Log in</span>
+              </router-link>
+              <router-link to="sign-up" class="button is-light">
+                Sign Up
+              </router-link>  
             </div>
           </div>
         </div>
-
-      </nav>
-
-      <div class="hero block is-medium is-danger pt-2">
-        <div class="hero-body">
-          <p class="title">
-            Hero title
-          </p>
-          <div id="target-ref" ref="target"></div>
-          <p class="subtitle">
-            Hero subtitle
-          </p>
-        </div>
-
-      </div>
-    </header>
-
-    <aside 
-      id="section-nav" 
-      class="menu section has-background-primary-light p-3" 
-      :class="{'visible':sideMenu}"
-    >
-
-      <p class="menu-label mb-3">
-        TikTakFood
-      </p>
-      
-      <ul>
-          <font-awesome-icon 
-            :icon="['fas', 'xmark']" 
-            class="button is-danger mb-4"
-            @click="sideMenu = false" 
-          />
-      </ul>
-
-      <ul class="menu-list mb-5 ">
-        <li><a class="button m-1">Add Restaurant</a></li>
-        <li><a class="button m-1">Add Business</a></li>
-        <li><a class="button m-1">Register To deliver</a></li>
-      </ul>
-
-      <ul class="menu-list mt-5">
-        <li><a class="button is-warning is-one-quarter m-1">Login</a></li>
-        <li><a class="button is-primary is-one-quarter m-1">Sign In</a></li>
-      </ul>
-
-    </aside>
-
-    <div class="container">
-      <div class="columns">
-        <div class="column is-four-fifths">is-four-fifths</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
       </div>
 
-      <div class="columns">
-        <div class="column is-three-quarters">is-three-quarters</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
+          <aside 
+            id="section-nav" 
+            class="menu section has-background-primary-light p-3" 
+            :class="{'visible':sideMenu}"
+          >
 
-      <div class="columns">
-        <div class="column is-two-thirds">is-two-thirds</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
+            <p class="menu-label mb-3">
+              TikTakFood
+            </p>
+            
+            <ul>
+                <font-awesome-icon 
+                  :icon="['fas', 'xmark']" 
+                  class="button is-danger mb-4"
+                  @click="sideMenu = false" 
+                />
+            </ul>
 
-      <div class="columns">
-        <div class="column is-three-fifths">is-three-fifths</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
+            <ul class="menu-list mb-5 ">
+              <li><a class="button m-1">Add Restaurant</a></li>
+              <li><a class="button m-1">Add Business</a></li>
+              <li><a class="button m-1">Register To deliver</a></li>
+            </ul>
 
-      <div class="columns">
-        <div class="column is-half">is-half</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
+            <ul class="menu-list mt-5">
+              <li><a class="button is-warning is-one-quarter m-1">Login</a></li>
+              <li><a class="button is-primary is-one-quarter m-1">Sign Up</a></li>
+            </ul>
 
-      <div class="columns">
-        <div class="column is-two-fifths">is-two-fifths</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
+          </aside>
 
-      <div class="columns">
-        <div class="column is-one-third">is-one-third</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
-
-      <div class="columns">
-        <div class="column is-one-quarter">is-one-quarter</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
-
-      <div class="columns">
-        <div class="column is-one-fifth">is-one-fifth</div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
-      </div>
-    </div>
-    
+    </nav>
+    <router-view/>
   </div>
-
+  
 </template>
 
-<script>
+<script >
 
   import axios from 'axios'
   import ref, { onMounted } from 'vue'
@@ -210,15 +135,12 @@
   color: #2c3e50;
 }
 
-header{
-    z-index: 0;
-    position: relative;
-}
 nav {
 
-
+  display: block;
   padding: 20px;
   transition: width 2s;
+  margin-bottom: 1rem;
   a {
     font-weight: bold;
     color: #2c3e50;
