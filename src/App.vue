@@ -93,6 +93,7 @@
 
     </nav>
     <router-view/>
+
   </div>
   
 </template>
@@ -127,61 +128,59 @@
 
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-
-  display: block;
-  padding: 20px;
-  transition: width 2s;
-  margin-bottom: 1rem;
-  a {
-    font-weight: bold;
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 
-}
+  nav {
 
-#navbar-sticky.sticky{
-  padding:10px;
-  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.3)
+    display: block;
+    padding: 20px;
+    transition: width 2s;
+    margin-bottom: 1rem;
+    a {
+      font-weight: bold;
+      color: #2c3e50;
 
-}
+      &.router-link-exact-active {
+        color: #42b983;
+      }
+    }
 
-aside#section-nav{
-  position: fixed;
-  z-index: 10;
-  height: 100%;
-  width: 40%;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  transition: 0.6s;
-  display: none;
-}
+  }
 
-aside#section-nav.visible{
-  display: block;
-}
+  #navbar-sticky.sticky{
+    padding:10px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.3)
 
-
-
-
-@media only screen and (max-width: 600px) {
+  }
 
   aside#section-nav{
-    width: 90%;
+    position: fixed;
+    z-index: 10;
+    height: 100%;
+    width: 40%;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.6s;
+    display: none;
   }
-} 
+
+  aside#section-nav.visible{
+    display: block;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.3)
+  }
+
+  @media only screen and (max-width: 600px) {
+
+    aside#section-nav{
+      width: 90%;
+    }
+  } 
 
 </style>
