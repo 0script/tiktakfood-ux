@@ -4,7 +4,6 @@ import router from './router/index'
 import store from './store'
 import '@/assets/main.scss'
 
-
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -17,12 +16,15 @@ import { faUserSecret,faCartShopping,faSearch,faSearchPlus,faRightToBracket,faBa
 import axios from 'axios'
 axios.defaults.baseURL='https://localhost:8000'
 
+import VueTelInput from 'vue3-tel-input'
+import 'vue3-tel-input/dist/vue3-tel-input.css'
+
 /* add icons to the library */
 library.add(faUserSecret,faCartShopping,faSearch,faSearchPlus,faRightToBracket,faBars,faXmark,faUser,faEnvelope,faPhone,faLocationDot,faLock)
-
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
     .use(store)
     .use(router,axios)
+    .use(VueTelInput)
     .mount('#app')

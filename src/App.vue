@@ -62,7 +62,7 @@
 
           <aside 
             id="section-nav" 
-            class="menu section has-background-primary-light p-3" 
+            class="menu section has-background-grey-lighter p-3" 
             :class="{'visible':sideMenu}"
           >
 
@@ -85,8 +85,8 @@
             </ul>
 
             <ul class="menu-list mt-5">
-              <li><a class="button is-warning is-one-quarter m-1">Login</a></li>
-              <li><a class="button is-primary is-one-quarter m-1">Sign Up</a></li>
+              <li><router-link to="log-in" class="button is-warning is-one-quarter m-1">Login</router-link></li>
+              <li><router-link to="sign-up" class="button is-primary is-one-quarter m-1">Sign Up</router-link></li>
             </ul>
 
           </aside>
