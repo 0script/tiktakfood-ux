@@ -1,0 +1,34 @@
+<div class="columns is-multiline">
+
+
+  <div class="column">
+
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control has-icons-left has-icons-right">
+        <input :class="{'is-danger':this.errors.username}" v-model="username" class="input" type="text" placeholder="Enter Username">
+        <span class="icon is-small is-left">
+          <font-awesome-icon :icon="['fas', 'user']" />
+        </span>
+      </div>
+
+      <p v-if="this.errors.username" class="help is-danger">{{ this.errors.username }}</p>
+    </div>
+  </div>
+
+
+  <div class="column">
+
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control has-icons-left has-icons-right">
+        <input :class="{'is-danger':this.errors.email}" v-model="email" class="input" type="text" placeholder="Enter Email">
+        <span class="icon is-small is-left">
+          <font-awesome-icon :icon="['fas', 'envelope']" />
+        </span>
+      </div>
+      <p v-if="this.errors.email" class="help is-danger">{{ this.errors.email }}</p>
+    </div>
+  </div>
+
+</div>

@@ -7,72 +7,49 @@
 
 
       <form @submit.prevent="submitForm" class="container" >
-        <div class="columns is-multiline">
 
-          <div class="column">
+        <div class="columns is-multilines">
 
-            <div class="field">
-              <label class="label">First Name</label>
-              <div class="control has-icons-left has-icons-right">
-                <input :class="{'is-danger':this.errors.first_name}" v-model="first_name" class="input" type="text" placeholder="Enter your first name">
-                <span class="icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'user']" />
-                </span>
-              </div>
-              <p v-if="this.errors.first_name" class="help is-danger">{{ this.errors.first_name }}</p>
-            </div>
-          </div>
+          <base-input
+            v-model="this.first_name"
+            name="first name"
+            type="text"
+            icon="fa-solid fa-user"
+            placeholder="Enter First Name"
+            :hasError="this.errors.first_name"
+          ></base-input>
 
-          <div class="column">
+          <base-input
+            v-model="this.last_name"
+            name="last name"
+            type="text"
+            icon="fa-solid fa-user"
+            placeholder="Enter Last Name"
+            :hasError="this.errors.last_name"
+          ></base-input>
 
-            <div class="field">
-              <label class="label">Last Name</label>
-              <div class="control has-icons-left has-icons-right">
-                <input :class="{'is-danger':this.errors.last_name}" v-model="last_name" class="input" type="text" placeholder="Enter your last name">
-                <span class="icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'user']" />
-                </span>
-              </div>
-              <p v-if="this.errors.last_name" class="help is-danger">{{ this.errors.last_name }}</p>
-            </div>
-          </div>
+        </div>
+
+        <div class="columns is-multilines">
+          <base-input
+            v-model="this.username"
+            name="username"
+            type="text"
+            icon="fa-solid fa-user"
+            placeholder="Enter Username"
+            :hasError="this.errors.username"
+          ></base-input>
+          <base-input
+            v-model="this.email"
+            name="email"
+            type="text"
+            icon="fa-solid fa-user"
+            placeholder="Enter Last Name"
+            :hasError="this.errors.last_name"
+          ></base-input>
         </div>
 
 
-        <div class="columns is-multiline">
-
-
-          <div class="column">
-
-            <div class="field">
-              <label class="label">Username</label>
-              <div class="control has-icons-left has-icons-right">
-                <input :class="{'is-danger':this.errors.username}" v-model="username" class="input" type="text" placeholder="Enter Username">
-                <span class="icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'user']" />
-                </span>
-              </div>
-
-              <p v-if="this.errors.username" class="help is-danger">{{ this.errors.username }}</p>
-            </div>
-          </div>
-
-
-          <div class="column">
-
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control has-icons-left has-icons-right">
-                <input :class="{'is-danger':this.errors.email}" v-model="email" class="input" type="text" placeholder="Enter Email">
-                <span class="icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'envelope']" />
-                </span>
-              </div>
-              <p v-if="this.errors.email" class="help is-danger">{{ this.errors.email }}</p>
-            </div>
-          </div>
-
-        </div>
 
         <div class="columns is-multiline">
 
@@ -184,9 +161,11 @@
 
   import axios from 'axios'
   import {toast} from 'bulma-toast'
-import { useAttrs } from 'vue'
+  import { useAttrs } from 'vue'
+  import BaseInput from '../components/formInputs/BaseInput.vue'
 
   export default {
+  components: { BaseInput },
     name: 'SignUpView',
     data(){
       return{
@@ -198,7 +177,18 @@ import { useAttrs } from 'vue'
         address:'',
         password:'',
         password1:'',
-        errors:{},
+        errors:{
+          first_name:false,
+          last_name:false,
+          username:false,
+          email:false,
+          address:false,
+          phone:false,
+          sexe:false,
+          age:false,
+          password:false,
+          password1:false
+        },
       }
     },
     methods:{
@@ -208,7 +198,8 @@ import { useAttrs } from 'vue'
         }
       },
       submitForm(){
-        this.errors={}
+        
+        this.errors= _.mapValues(this.errors, () => false);
 
         if(this.first_name===''){
           console.log(this.first_name)
