@@ -4,7 +4,7 @@
         <div class="field">
             <label class="label">{{titleCase(name)}}</label>
             <div class="control has-icons-left has-icons-right">
-            <input :class="{'is-danger':hasError}"  class="input" :type="type" :placeholder="placeholder">
+            <input :class="{'is-danger':hasError}" :value="modelValue"  class="input" :type="type" :placeholder="placeholder">
             <span class="icon is-small is-left">
                 <font-awesome-icon :icon="icon" />
             </span>

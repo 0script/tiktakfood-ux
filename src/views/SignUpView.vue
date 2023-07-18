@@ -31,6 +31,7 @@
         </div>
 
         <div class="columns is-multilines">
+          
           <base-input
             v-model="this.username"
             name="username"
@@ -39,6 +40,7 @@
             placeholder="Enter Username"
             :hasError="this.errors.username"
           ></base-input>
+
           <base-input
             v-model="this.email"
             name="email"
@@ -47,6 +49,7 @@
             placeholder="Enter Last Name"
             :hasError="this.errors.last_name"
           ></base-input>
+        
         </div>
 
 
@@ -54,60 +57,36 @@
         <div class="columns is-multiline">
 
 
-          <div class="column">
+          <phone-input
+            v-model="phone"
+            name="phone"
+            :hasError="this.errors.phone"
+          ></phone-input>
 
-            <div class="field">
-              <label class="label">Phone</label>
-              <div class="control has-icons-left has-icons-right" style="border=none;" >
-                
-                <!-- <input :class="{'is-danger':this.errors.phone}" v-model="phone" class="input" type="text" placeholder="Enter Phone"> -->
-                <span class="ml-1 icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'phone']" />
-                </span>
-                <div id="phone-input" class="input" style="border: none;">
-                  <vue-tel-input :value="phone" @input="onInput" mode="international" defaultCountry="Rw"></vue-tel-input>
-                </div>
-                
-              </div>
-              <p v-if="this.errors.phone" class="help is-danger">{{ this.errors.phone }}</p>
-            </div>
+          <base-input
+            v-model="this.address"
+            name="address"
+            type="text"
+            icon="fa-solid fa-location-dot"
+            placeholder="Enter Address"
+            :hasError="this.errors.address"
+          ></base-input>
+
+        </div>
+
+        <div class="columns is-multiline">
+
+          <check-box-input
+            @radio-checked="this.sexe"
+            name="gender"
+          >
+          </check-box-input>
+
+        </div>
+
+        <div class="columns is-multiline">
+
           
-          </div>
-
-
-          <div class="column">
-
-            <div class="field">
-              <label class="label">Address</label>
-              <div class="control has-icons-left has-icons-right">
-                <input :class="{'is-danger':this.errors.address}" v-model="address" class="input" type="text" placeholder="Enter Address">
-                <span class="icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'location-dot']" />
-                </span>
-              </div>
-              <p v-if="this.errors.address" class="help is-danger">{{ this.errors.address }}</p>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="columns is-multiline">
-
-          <div class="column">
-
-            <div class="field">
-              <label class="label">Password</label>
-              <div class="control has-icons-left has-icons-right">
-                <input :class="{'is-danger':this.errors.password}" v-model="password" class="input" type="password" placeholder="Enter Password">
-                <span class="icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'lock']" />
-                </span>
-              </div>
-            </div>
-            <p v-if="this.errors.password" class="help is-danger">{{ this.errors.password }}</p>
-          </div>
-
 
           <div class="column">
 
@@ -163,9 +142,11 @@
   import {toast} from 'bulma-toast'
   import { useAttrs } from 'vue'
   import BaseInput from '../components/formInputs/BaseInput.vue'
+  import PhoneInput from '../components/formInputs/PhoneInput.vue'
+  import CheckBoxInput from '../components/formInputs/CheckBoxInput.vue'
 
   export default {
-  components: { BaseInput },
+  components: { BaseInput ,PhoneInput,CheckBoxInput},
     name: 'SignUpView',
     data(){
       return{
@@ -175,6 +156,7 @@
         email:'',
         phone:'',
         address:'',
+        sexe:'M',
         password:'',
         password1:'',
         errors:{

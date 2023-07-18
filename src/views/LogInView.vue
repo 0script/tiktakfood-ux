@@ -32,26 +32,10 @@
     </div>
 
     <div class="columns is-multiline">
-      <div class="column">
-        <div class="field">
-          <label class="label">Gender</label>
-          <div class="control has-icon-lef">
-            <div class="cotain">
-              <input type="radio" name="payment" id="card">
-              <label class="icon-radio" for="card">
-                  <font-awesome-icon :icon="['fass', 'person']" />
-                  <span>Male</span>
-              </label>
-              <input type="radio" name="payment" id="cash">
-              <label for="cash">
-                  <font-awesome-icon :icon="['fass', 'person-dress']" />
-                  <span>Female</span>
-              </label>       
-            </div>
-
-          </div>
-        </div>
-      </div>
+      
+      <check-box-input
+        
+      ></check-box-input>
 
       <div class="column">
         <div class="field">
@@ -74,9 +58,10 @@
 
 <script>
 import BaseInput from '../components/formInputs/BaseInput.vue';
+import CheckBoxInput from '../components/formInputs/CheckBoxInput.vue';
 
 export default {
-  components: { BaseInput },
+  components: { BaseInputCheckBoxInput },
   name: "LoginView",
   data() {
     return {
