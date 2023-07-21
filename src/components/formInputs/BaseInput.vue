@@ -4,12 +4,19 @@
         <div class="field">
             <label class="label">{{titleCase(name)}}</label>
             <div class="control has-icons-left has-icons-right">
-            <input :class="{'is-danger':hasError}" :value="modelValue"  class="input" :type="type" :placeholder="placeholder">
+            <input 
+                class="input" 
+                :class="{'is-danger':hasError}" 
+                :value="modelValue" 
+                @input="updateValue"
+                :type="type" 
+                :placeholder="placeholder" 
+            />
             <span class="icon is-small is-left">
                 <font-awesome-icon :icon="icon" />
             </span>
             </div>
-            <p v-if="hasError" class="help is-danger">Error , {{titleCase(name)}} is required !</p>
+            <p v-if="hasError" class="help is-danger">{{titleCase(name)}} is required !</p>
         </div>
     </div>
 </template>
@@ -18,14 +25,18 @@
     export default({
         name:'BaseInput',
         props:{
-            'modelValue':String,
             'name':String,
+            'modelValue':String,
             'type':String,
             'icon':String,
             'placeholder':String,
             'hasError':Boolean,
             },
-        emits:['update:modelValue'],
+        data(){
+            return{
+                value:''
+            }
+        },
         methods:{
             titleCase(str){
                 str = str.toLowerCase().split(' ');
@@ -33,6 +44,9 @@
                     str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
                 }
                 return str.join(' ');
+            },
+            updateValue(e){
+                this.$emit('update:modelValue',e.target.value)
             }
         }
     })

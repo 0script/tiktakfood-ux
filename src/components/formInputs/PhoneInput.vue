@@ -13,7 +13,7 @@
                     <vue-tel-input :value="modelValue" @input="onInput" mode="international" defaultCountry="Rw"></vue-tel-input>
                 </div>
             </div>
-            <p v-if="hasError" class="help is-danger">{{ titleCase(name) }}</p>
+            <p v-if="hasError" class="help is-danger">{{ titleCase(name) }} is required !</p>
         </div>
           
     </div>
@@ -27,7 +27,11 @@
             'name':String,
             'hasError':Boolean,
             },
-        emits:['update:modelValue'],
+        data(){
+            return{
+                phone:''
+            }
+        },
         methods:{
             
             titleCase(str){
@@ -39,7 +43,8 @@
             },
             onInput(phone,phoneObject,input){
                 if(phoneObject?.formatted){
-                this.phone=phoneObject.formatted
+                    this.phone=phoneObject.formatted
+                    this.$emit('update:modelValue',this.phone)
                 }
             }
         }

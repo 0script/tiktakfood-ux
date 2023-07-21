@@ -61,7 +61,7 @@ import BaseInput from '../components/formInputs/BaseInput.vue';
 import CheckBoxInput from '../components/formInputs/CheckBoxInput.vue';
 
 export default {
-  components: { BaseInputCheckBoxInput },
+  components: { BaseInput },
   name: "LoginView",
   data() {
     return {

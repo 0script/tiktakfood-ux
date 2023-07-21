@@ -1,7 +1,7 @@
 <template>
     <section class="section is-centered">
       <h1 class="title">Create An Account</h1>
-      <h2 class="subtitle">
+      <h2 class="subtitle">{{this.first_name}}
         Register a user account on the site.
       </h2>
 
@@ -11,8 +11,8 @@
         <div class="columns is-multilines">
 
           <base-input
-            v-model="this.first_name"
             name="first name"
+            v-model="this.first_name"
             type="text"
             icon="fa-solid fa-user"
             placeholder="Enter First Name"
@@ -58,7 +58,8 @@
 
 
           <phone-input
-            v-model="phone"
+
+            v-model="this.phone"
             name="phone"
             :hasError="this.errors.phone"
           ></phone-input>
@@ -77,31 +78,43 @@
         <div class="columns is-multiline">
 
           <check-box-input
-            @radio-checked="this.sexe"
+            v-model="this.sexe"
             name="gender"
           >
           </check-box-input>
 
+          <base-input
+            v-model="this.birthday"
+            name="birthday"
+            type="date"
+            icon="fa-solid fa-calendar-day"
+            placeholder="Enter Birthday"
+            :hasError="this.errors.birthday"
+          ></base-input>
+
+
         </div>
 
         <div class="columns is-multiline">
-
           
+          <base-input
+            v-model="this.password"
+            name="password"
+            type="password"
+            icon="fa-solid fa-lock"
+            placeholder="Enter Password"
+            :hasError="this.errors.password"
+          ></base-input>
+          
+          <base-input
+            v-model="this.password1"
+            name="repeat password"
+            type="password"
+            icon="fa-solid fa-lock"
+            placeholder="Reapeat Password"
+            :hasError="this.errors.password1"
+          ></base-input>
 
-          <div class="column">
-
-            <div class="field">
-              <label class="label">Repeat Password</label>
-              <div class="control has-icons-left has-icons-right">
-                <input :class="{'is-danger':this.errors.password1}" v-model="password1" class="input" type="password" placeholder="Repeat Password">
-                <span class="icon is-small is-left">
-                  <font-awesome-icon :icon="['fas', 'lock']" />
-                </span>
-              </div>
-
-              <p v-if="this.errors.password1" class="help is-danger">{{ this.errors.password1 }}</p>
-            </div>
-          </div>
 
         </div>
 
@@ -157,6 +170,7 @@
         phone:'',
         address:'',
         sexe:'M',
+        birthday:'',
         password:'',
         password1:'',
         errors:{
@@ -181,39 +195,43 @@
       },
       submitForm(){
         
-        this.errors= _.mapValues(this.errors, () => false);
+        for(var i in this.errors) this.errors[i] = false;
 
         if(this.first_name===''){
           console.log(this.first_name)
-          this.errors.first_name='First name is requiered !ok'
+          this.errors.first_name=true
         }
 
         if(this.last_name===''){
-          this.errors.last_name='Last name is requiered !'
+          this.errors.last_name=true
         }
 
         if(this.username===''){
-          this.errors.username='Username is requiered !'
+          this.errors.username=true
         }
 
         if(this.email===''){
-          this.errors.email='Email is requiered !'
+          this.errors.email=true
         }
 
         if(this.phone===''){
-          this.errors.phone='Phone is requiered !'
+          this.errors.phone=true
         }
 
         if(this.address===''){
-          this.errors.address='Address is requiered !'
+          this.errors.address=true
+        }
+
+        if(this.birthday===''){
+          this.errors.birthday=true
         }
 
         if(this.password===''){
-          this.errors.password='Password is requiered !'
+          this.errors.password=true
         }
 
         if(this.password!==this.password1){
-          this.errors.password1='Password do not match !'
+          this.errors.password1=true
         }
 
         console.log('form check errors')
@@ -226,6 +244,8 @@
             email:this.email,
             phone:this.phone,
             address:this.address,
+            sexe:this.sexe,
+            birthday:this.birthday,
             password:this.password            
           }
 
@@ -261,17 +281,9 @@
               }
             })
         }
-
-
-        
-      },
-      clicking(){
-        console.log(this.phone)
+ 
       }
     }
-    // mounted(){
-    //   this.getCountry()
-    // }
   }
 </script>
 

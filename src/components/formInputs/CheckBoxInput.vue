@@ -3,17 +3,31 @@
         <div class="field">
           <label class="label">{{ titleCase(name) }}</label>
           <div class="control has-icon-lef">
-            <div class="cotain" @click="returnSexe()">
-              <input type="radio" :name="name" id="male" value="M" v-model="this.sex" >
-              <label class="icon-radio" for="male">
-                  <font-awesome-icon :icon="['fass', 'person']" />
-                  <span>Male</span>
-              </label>
-              <input type="radio" :name="name" id="female" value="F" v-model="this.sex" >
-              <label for="female">
-                  <font-awesome-icon :icon="['fass', 'person-dress']" />
-                  <span>Female</span>
-              </label>       
+            <div class="cotain">
+                <input 
+                    type="radio" 
+                    name="sexe" 
+                    id="male" 
+                    @click="updateValue"
+                    
+                >
+                <label class="icon-radio" for="male">
+                    <font-awesome-icon :icon="['fass', 'person']" />
+                    <span>Male</span>
+                </label>
+                
+                <span class="m-1"> </span>
+                
+                <input 
+                    type="radio" 
+                    name="sexe" 
+                    id="female" 
+                    @click="updateValue"
+                >
+                <label class="icon-radio" for="female">
+                    <font-awesome-icon :icon="['fass', 'person-dress']" />
+                    <span>Female</span>
+                </label>       
             </div>
 
           </div>
@@ -26,15 +40,9 @@
     export default({
         name:'CheckBoxInput',
         props:{
-            'modelValue':CharacterData,
+            'modelValue':String,
             'name':String,
             },
-        emits:['update:modelValue'],
-        data(){
-            return {
-                sex:''
-            }
-        },
         methods:{
             titleCase(str){
                 str = str.toLowerCase().split(' ');
@@ -43,8 +51,14 @@
                 }
                 return str.join(' ');
             },
-            returnSex(){
-                this.emits('radio-checked',this.sex)
+            updateValue(e){
+                let sex='M'
+                if(e.target.checked && e.target.id==='female'){
+                    this.$emit('update:modelValue','F')
+                }
+                if(e.target.checked && e.target.id==='male'){
+                    this.$emit('update:modelValue','M')
+                }
             }
         }
     })
